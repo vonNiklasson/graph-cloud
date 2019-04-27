@@ -1,4 +1,4 @@
-from extended_networkx_tools import Creator, Analytics, Solver
+from extended_networkx_tools import Creator
 from simulated_annealing import Annealing2
 import networkx
 
