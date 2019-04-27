@@ -28,7 +28,7 @@ def hello_world(request):
 
 
 def generate_graph(request):
-    node_count = get_parameter(request, 'node_count', 10)
+    node_count = int(get_parameter(request, 'node_count', 10))
     optimizer = get_parameter(request, 'optimizer')
 
     worker = Worker(node_count=node_count, optimizer=optimizer)
