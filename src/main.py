@@ -34,4 +34,4 @@ def generate_graph(request):
     worker = Worker(node_count=node_count, optimizer=optimizer)
     graph = worker.solve()
 
-    return str(Analytics.convergence_rate(graph))
+    return 'Convergence rate: {}'.format(str(Analytics.convergence_rate(graph)))
