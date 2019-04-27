@@ -1,6 +1,11 @@
 from flask import escape
+from utils import get_parameter
+from Worker import Worker
 
-def get_status(request):
+from extended_networkx_tools import Analytics
+
+
+def hello_world(request):
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.
@@ -20,3 +25,13 @@ def get_status(request):
     else:
         name = 'World'
     return 'Hello {}!'.format(escape(name))
+
+
+def generate_graph(request):
+    node_count = get_parameter(request, 'node_count', 10)
+    optimizer = get_parameter(request, 'optimizer')
+
+    worker = Worker(node_count=node_count, optimizer=optimizer)
+    graph = worker.solve()
+
+    return Analytics.convergence_rate(graph)
